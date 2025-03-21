@@ -13,7 +13,7 @@ app.use(express.json());
 const MONGODB_URI = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.roenx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 // MongoDB connection
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(MONGODB_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
