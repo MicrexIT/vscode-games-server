@@ -28,12 +28,12 @@ const scoreSchema = new mongoose.Schema({
 const Score = mongoose.model("Score", scoreSchema);
 
 // Routes
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.json({ message: "Game Score API is running" });
 });
 
 // Get top scores for a game
-app.get("/scores/:game", async (req, res) => {
+app.get("/api/scores/:game", async (req, res) => {
   try {
     const scores = await Score.find({ game: req.params.game })
       .sort({ score: -1 })
@@ -53,7 +53,7 @@ app.get("/scores/:game", async (req, res) => {
 });
 
 // Get best score for a user in a game by username
-app.get("/scores/:game/:username", async (req, res) => {
+app.get("/api/scores/:game/:username", async (req, res) => {
   try {
     const score = await Score.findOne({
       game: req.params.game,
@@ -77,7 +77,7 @@ app.get("/scores/:game/:username", async (req, res) => {
 });
 
 // Get best score for a user in a game by token
-app.get("/scores/:game/token/:token", async (req, res) => {
+app.get("/api/scores/:game/token/:token", async (req, res) => {
   try {
     const score = await Score.findOne({
       game: req.params.game,
@@ -101,7 +101,7 @@ app.get("/scores/:game/token/:token", async (req, res) => {
 });
 
 // Save a new score
-app.post("/scores", async (req, res) => {
+app.post("/api/scores", async (req, res) => {
   try {
     const { game, score, username, token } = req.body;
 
